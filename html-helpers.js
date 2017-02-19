@@ -2,6 +2,10 @@ import { Template } from 'meteor/templating';
 import { _ } from 'meteor/underscore';
 import { EJSON } from 'meteor/ejson';
 
+function conditionalAttribute(attribute, current, expected, initial) {
+	if ( current && current == expected || initial ) return { [attribute]: true };
+}
+
 Template.helpers({
 	
 	dump(...rest) { 
@@ -19,12 +23,10 @@ Template.helpers({
 		}
 	},
 	
-	selected(current, expected, initial) {
-		return (!current && initial || current == expected) ? 'selected' : false;
-	},
+	selected: (current, expected, initial) => conditionalAttribute('selected', current, expected, initial),
 
-	checked(current, expected, initial) {
-		return (!current && initial || current == expected) ? 'checked' : false;
-	}
+	checked: (current, expected, initial) => conditionalAttribute('checked', current, expected, initial),
+	
+	disabled: (current, expected, initial) => conditionalAttribute('disabled', current, expected, initial),
 	
 });
