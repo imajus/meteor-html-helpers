@@ -29,7 +29,7 @@ Tinytest.add('majus:html-helpers - numberClass', (test) => {
 
 Tinytest.add('majus:html-helpers - selected & checked', (test) => {
   new TemplateTestCase(test, Template.testHtmlHelpersSelectedChecked)
-    .equal({ a: 'first', b: 'first' }, 'selectedchecked')
-    .equal({ a: 'second', b: 'first' }, '')
-    .equal({ a: undefined, b: 'first', c: true }, 'selectedchecked');
+    .equal({ a: 'first', b: 'first' }, '<input selected="selected" checked="checked">')
+    .equal({ a: 'second', b: 'first' }, '<input>')
+    .equal({ a: undefined, b: 'first', c: true }, '<input selected="selected" checked="checked">');
 });

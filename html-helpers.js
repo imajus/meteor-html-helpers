@@ -3,7 +3,7 @@ import { _ } from 'meteor/underscore';
 import { EJSON } from 'meteor/ejson';
 
 function conditionalAttribute(attribute, current, expected, initial) {
-	if ( current && current == expected || initial ) return { [attribute]: true };
+	if ( current && current == expected || initial ) return { [attribute]: attribute };
 }
 
 Template.helpers({
