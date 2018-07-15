@@ -3,7 +3,9 @@ import { _ } from 'meteor/underscore';
 import { EJSON } from 'meteor/ejson';
 
 function conditionalAttribute(attribute, current, expected, initial) {
-	if ( current && current == expected || initial ) return { [attribute]: attribute };
+	if ( ! _.isUndefined(current) && current === expected || initial ) {
+    return { [attribute]: attribute };
+  }
 }
 
 Template.helpers({
@@ -23,10 +25,16 @@ Template.helpers({
 		}
 	},
 	
-	selected: (current, expected, initial) => conditionalAttribute('selected', current, expected, initial),
+	selected(current, expected, initial) {
+    return conditionalAttribute('selected', current, expected, initial);
+  },
 
-	checked: (current, expected, initial) => conditionalAttribute('checked', current, expected, initial),
+	checked(current, expected, initial) {
+    return conditionalAttribute('checked', current, expected, initial);
+  },
 	
-	disabled: (current, expected, initial) => conditionalAttribute('disabled', current, expected, initial),
+	disabled(current, expected, initial) {
+    return conditionalAttribute('disabled', current, expected, initial);
+  }
 	
 });
